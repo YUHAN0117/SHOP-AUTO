@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>導購站 · 自動更新</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css" />
+  <meta name="description" content="自動更新商品導購站，資料由 GitHub Actions 產生的 JSON 提供。" />
+</head>
+<body>
+  <header class="site-header">
+    <h1>導購站 <span class="badge">Auto</span></h1>
+    <div class="controls">
+      <input id="q" type="search" placeholder="搜尋商品、關鍵字…" />
+      <select id="category"><option value="">所有分類</option></select>
+      <select id="sort">
+        <option value="hot">熱門優先</option>
+        <option value="price_asc">價格（低→高）</option>
+        <option value="price_desc">價格（高→低）</option>
+        <option value="rating_desc">評分（高→低）</option>
+        <option value="newest">最新上架</option>
+      </select>
+    </div>
+  </header>
+  <main>
+    <div id="grid" class="grid"></div>
+    <div id="empty" class="empty" hidden>沒有符合條件的商品（等自動更新完成後會出現）。</div>
+  </main>
+  <footer class="site-footer">
+    <span id="count">0</span> 件商品 · 最後更新：<span id="lastUpdated">--</span>
+  </footer>
+  <template id="card-tpl">
+    <article class="card">
+      <a class="thumb" target="_blank" rel="nofollow noopener sponsored">
+        <img alt="商品圖片" loading="lazy">
+      </a>
+      <div class="meta">
+        <a class="title" target="_blank" rel="nofollow noopener sponsored"></a>
+        <div class="price-row">
+          <span class="price"></span>
+          <span class="rating"></span>
+        </div>
+        <div class="tags"></div>
+        <a class="btn" target="_blank" rel="nofollow noopener sponsored">前往購買</a>
+      </div>
+    </article>
+  </template>
+  <script src="assets/app.js"></script>
+</body>
+</html>
