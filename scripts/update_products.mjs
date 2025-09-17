@@ -1,4 +1,4 @@
-// scripts/update_products.mjs
+// scripts/update_products.mjs (enhanced)
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
@@ -11,20 +11,28 @@ function uidFor(url){
   return 'id-' + crypto.createHash('md5').update(url).digest('hex').slice(0,12);
 }
 
+function pick(re, html){
+  const m = html.match(re);
+  return m ? m[1] : '';
+}
+
 function parseOG(html){
-  const meta = (prop) => {
-    const re = new RegExp(`<meta[^>]*property=["']${prop}["'][^>]*content=["']([^"']+)["']`, 'i');
-    const m = html.match(re);
-    return m ? m[1] : '';
-  };
-  const title = meta('og:title') || (html.match(/<title[^>]*>([^<]+)<\/title>/i)?.[1] || '');
-  const image = meta('og:image') || '';
-  return { title, image };
+  const og = (prop) => pick(new RegExp(`<meta[^>]*property=["']${prop}["'][^>]*content=["']([^"']+)["']`, 'i'), html);
+  const byName = (name) => pick(new RegExp(`<meta[^>]*name=["']${name}["'][^>]*content=["']([^"']+)["']`, 'i'), html);
+  const title = og('og:title') || byName('twitter:title') || byName('title') || pick(/<title[^>]*>([^<]+)<\/title>/i, html);
+  const image = og('og:image') || og('og:image:secure_url') || byName('twitter:image') || byName('image');
+  return { title: title || '', image: image || '' };
 }
 
 async function fetchOG(url){
   try{
-    const res = await fetch(url, { redirect: 'follow' });
+    const res = await fetch(url, {
+      redirect: 'follow',
+      headers: {
+        'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+        'accept': 'text/html,application/xhtml+xml'
+      }
+    });
     if (!res.ok) throw new Error('HTTP ' + res.status);
     const html = await res.text();
     return parseOG(html);
@@ -43,7 +51,7 @@ function readCSV(file){
     let cur = '', inQ = false;
     for (let i=0;i<l.length;i++){
       const ch = l[i];
-      if (ch === '"' ){ inQ = !inQ; continue; }
+      if (ch === '"'){ inQ = !inQ; continue; }
       if (ch === ',' && !inQ){ cells.push(cur); cur=''; continue; }
       cur += ch;
     }
@@ -72,6 +80,7 @@ async function main(){
     if (!row.url) continue;
     const id = uidFor(row.url);
     const prevIt = prevMap.get(id);
+
     const og = await fetchOG(row.url);
     const now = new Date().toISOString();
 
@@ -89,7 +98,7 @@ async function main(){
       note: row.note || prevIt?.note || '',
       added_at: prevIt?.added_at || now,
       updated_at: now,
-      active: (row.active || prevIt?.active || 'true').toString().toLowerCase() !== 'false'
+      active: (row.active || prevIt?.active || 'true').toString().toLowerCase() != 'false'
     };
     items.push(item);
   }

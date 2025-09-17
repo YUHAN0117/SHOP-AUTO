@@ -1,11 +1,11 @@
 url,affiliate_url,title,price,rating,category,brand,tags,image,note,active
-https://example.com/powerbank,https://example.com/aff/powerbank,,890,4.8,行動電源,MOS,"快充, 輕薄, 出遊",,支援PD/QC,true
-https://example.com/charger,https://example.com/aff/charger,,1090,4.7,充電器,Anker,"65W, 雙孔",,,true
-https://example.com/buds,https://example.com/aff/buds,,1790,4.6,耳機,Xiaomi,"藍牙, 降噪",,,true
-https://example.com/cable,https://example.com/aff/cable,,199,4.5,線材,Baseus,"Type-C, 快充",,,true
-https://example.com/stand,https://example.com/aff/stand,,399,4.4,手機支架,Focus,"車用, 穩固",,,true
-https://example.com/mouse,https://example.com/aff/mouse,,690,4.5,滑鼠,Logitech,"靜音, 藍牙",,,true
-https://example.com/keyboard,https://example.com/aff/keyboard,,1490,4.6,鍵盤,Keychron,"機械式, 熱插拔",,,true
-https://example.com/hub,https://example.com/aff/hub,,890,4.5,轉接器,UGREEN,"USB-C, 6合1",,,true
-https://example.com/ssd,https://example.com/aff/ssd,,2290,4.7,外接SSD,Samsung,"NVMe, 1TB",,,true
-https://example.com/monitor,https://example.com/aff/monitor,,3990,4.6,螢幕,ASUS,"24吋, 75Hz",,,true
+https://example.com/powerbank,https://aff.example.com/powerbank,MOS 行動電源 10000mAh,890,4.8,行動電源,MOS,"快充, 輕薄, 出遊",https://images.unsplash.com/photo-1555618568-9e0e24bd09ea?w=800&auto=format&fit=crop,支援PD/QC,true
+https://example.com/charger,https://aff.example.com/charger,Anker 65W 雙孔快充頭,1090,4.7,充電器,Anker,"65W, 雙孔",https://images.unsplash.com/photo-1611186871348-b1ce696e52c9?w=800&auto=format&fit=crop,,true
+https://example.com/buds,https://aff.example.com/buds,Xiaomi Buds 5 Pro,1790,4.6,耳機,Xiaomi,"藍牙, 降噪",https://images.unsplash.com/photo-1606229365485-c9c57d0d0a54?w=800&auto=format&fit=crop,,true
+https://example.com/cable,https://aff.example.com/cable,Baseus 100W C to C 充電線,199,4.5,線材,Baseus,"Type-C, 快充",https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=800&auto=format&fit=crop,,true
+https://example.com/stand,https://aff.example.com/stand,Focus 車用手機支架,399,4.4,手機支架,Focus,"車用, 穩固",https://images.unsplash.com/photo-1606167668584-78701c57f13c?w=800&auto=format&fit=crop,,true
+https://example.com/mouse,https://aff.example.com/mouse,Logitech M650 靜音滑鼠,690,4.5,滑鼠,Logitech,"靜音, 藍牙",https://images.unsplash.com/photo-1599824986271-7b1cf34d6df2?w=800&auto=format&fit=crop,,true
+https://example.com/keyboard,https://aff.example.com/keyboard,Keychron K2 機械鍵盤,1490,4.6,鍵盤,Keychron,"機械式, 熱插拔",https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&auto=format&fit=crop,,true
+https://example.com/hub,https://aff.example.com/hub,UGREEN USB-C 6合1 Hub,890,4.5,轉接器,UGREEN,"USB-C, HDMI",https://images.unsplash.com/photo-1609599006353-8e1ab0b0f9a5?w=800&auto=format&fit=crop,,true
+https://example.com/ssd,https://aff.example.com/ssd,Samsung T7 1TB 外接 SSD,2290,4.7,外接SSD,Samsung,"NVMe, 1TB",https://images.unsplash.com/photo-1587202372775-98927b86f2d5?w=800&auto=format&fit=crop,,true
+https://example.com/monitor,https://aff.example.com/monitor,ASUS 24吋 75Hz 螢幕,3990,4.6,螢幕,ASUS,"24吋, 75Hz",https://images.unsplash.com/photo-1587202372775-98927b86f2d5?w=800&auto=format&fit=crop,,true
