@@ -13,7 +13,7 @@
       "affiliate_url": "https://example.com/aff/powerbank",
       "note": "支援PD/QC",
       "added_at": "2025-09-17T02:02:20.253Z",
-      "updated_at": "2025-09-17T02:02:20.253Z",
+      "updated_at": "2025-09-17T03:37:33.967Z",
       "active": true
     },
     {
@@ -29,7 +29,7 @@
       "affiliate_url": "https://example.com/aff/charger",
       "note": "",
       "added_at": "2025-09-17T02:02:20.777Z",
-      "updated_at": "2025-09-17T02:02:20.777Z",
+      "updated_at": "2025-09-17T03:37:34.735Z",
       "active": true
     },
     {
@@ -45,7 +45,7 @@
       "affiliate_url": "https://example.com/aff/buds",
       "note": "",
       "added_at": "2025-09-17T02:02:21.002Z",
-      "updated_at": "2025-09-17T02:02:21.002Z",
+      "updated_at": "2025-09-17T03:37:35.016Z",
       "active": true
     },
     {
@@ -61,7 +61,7 @@
       "affiliate_url": "https://example.com/aff/cable",
       "note": "",
       "added_at": "2025-09-17T02:02:21.276Z",
-      "updated_at": "2025-09-17T02:02:21.276Z",
+      "updated_at": "2025-09-17T03:37:35.713Z",
       "active": true
     },
     {
@@ -77,7 +77,7 @@
       "affiliate_url": "https://example.com/aff/stand",
       "note": "",
       "added_at": "2025-09-17T02:02:22.048Z",
-      "updated_at": "2025-09-17T02:02:22.048Z",
+      "updated_at": "2025-09-17T03:37:36.003Z",
       "active": true
     },
     {
@@ -93,7 +93,7 @@
       "affiliate_url": "https://example.com/aff/mouse",
       "note": "",
       "added_at": "2025-09-17T02:02:22.690Z",
-      "updated_at": "2025-09-17T02:02:22.690Z",
+      "updated_at": "2025-09-17T03:37:36.250Z",
       "active": true
     },
     {
@@ -109,7 +109,7 @@
       "affiliate_url": "https://example.com/aff/keyboard",
       "note": "",
       "added_at": "2025-09-17T02:02:22.977Z",
-      "updated_at": "2025-09-17T02:02:22.977Z",
+      "updated_at": "2025-09-17T03:37:36.331Z",
       "active": true
     },
     {
@@ -125,7 +125,7 @@
       "affiliate_url": "https://example.com/aff/hub",
       "note": "",
       "added_at": "2025-09-17T02:02:23.674Z",
-      "updated_at": "2025-09-17T02:02:23.674Z",
+      "updated_at": "2025-09-17T03:37:36.561Z",
       "active": true
     },
     {
@@ -141,7 +141,7 @@
       "affiliate_url": "https://example.com/aff/ssd",
       "note": "",
       "added_at": "2025-09-17T02:02:23.957Z",
-      "updated_at": "2025-09-17T02:02:23.957Z",
+      "updated_at": "2025-09-17T03:37:36.845Z",
       "active": true
     },
     {
@@ -157,9 +157,9 @@
       "affiliate_url": "https://example.com/aff/monitor",
       "note": "",
       "added_at": "2025-09-17T02:02:24.698Z",
-      "updated_at": "2025-09-17T02:02:24.698Z",
+      "updated_at": "2025-09-17T03:37:37.529Z",
       "active": true
     }
   ],
-  "lastUpdated": "2025-09-17T02:02:24.698Z"
+  "lastUpdated": "2025-09-17T03:37:37.529Z"
 }
