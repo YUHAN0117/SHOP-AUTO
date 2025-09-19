@@ -1,4 +1,5 @@
-// scripts/update_products.mjs — Shopee 強化版（跟隨短連結 + 解析 ld+json + 圖片兜底）
+// scripts/update_products.mjs — Shopee 強化完整版
+// 功能：支援 Shopee 短連結/長連結、自動跟隨跳轉、抓取 ld+json、兜底圖片
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
@@ -13,7 +14,7 @@ const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML,
 function uidFor(url){ return 'id-' + crypto.createHash('md5').update(url).digest('hex').slice(0,12); }
 function m(html, re){ const x = html.match(re); return x ? x[1] : ''; }
 
-// 解析 OG / Twitter / <title> / canonical
+// 基本解析 OG / Twitter / <title> / canonical
 function parseBasic(html){
   const prop = p => m(html, new RegExp(`<meta[^>]*property=["']${p}["'][^>]*content=["']([^"']+)["']`, 'i'));
   const name = n => m(html, new RegExp(`<meta[^>]*name=["']${n}["'][^>]*content=["']([^"']+)["']`, 'i'));
@@ -24,13 +25,12 @@ function parseBasic(html){
   return { title, image, canonical };
 }
 
-// 解析 <script type="application/ld+json"> 裡的 Product.name / image
+// 解析 <script type="application/ld+json">
 function parseLD(html){
   const blocks = [...html.matchAll(/<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/ig)];
   for (const b of blocks){
     try{
       const json = JSON.parse(b[1].trim());
-      // 可能是陣列或物件
       const nodes = Array.isArray(json) ? json : [json];
       for (const n of nodes){
         if (!n) continue;
@@ -41,7 +41,6 @@ function parseLD(html){
           else if (typeof n.image === 'string') image = n.image;
           if (title || image) return { title, image };
         }
-        // 有時會把 product 放在 graph
         if (Array.isArray(n['@graph'])){
           for (const g of n['@graph']){
             if (g && g['@type'] && String(g['@type']).toLowerCase().includes('product')){
@@ -59,24 +58,35 @@ function parseLD(html){
   return { title:'', image:'' };
 }
 
-// 兜底：直接掃出 Shopee 圖片 CDN
+// 兜底：直接掃 Shopee 圖片 CDN
 function fallbackShopeeImage(html){
-  const hit = html.match(/https?:\/\/(?:cf|down-[\w-]+)\.shopee\.tw\/file\/[A-Za-z0-9_.-]+/i);
-  return hit ? hit[0] : '';
+  // 1) 直接出現在 HTML 的圖片
+  const hit = html.match(/(?:https?:)?\/\/(?:cf|down-[\w-]+)\.(?:shopee\.tw|img\.susercontent\.com)\/file\/[A-Za-z0-9_.%-]+/i);
+  if (hit) return hit[0].startsWith('http') ? hit[0] : 'https:' + hit[0];
+
+  // 2) JSON 內嵌的圖片網址（有跳脫字元）
+  const jsonHit = html.match(/https:\\\/\\\/(?:down-[\w-]+\.img\.susercontent\.com|cf\.shopee\.tw)\\\/file\\\/[A-Za-z0-9_.%-]+/i);
+  if (jsonHit) return jsonHit[0].replace(/\\\//g, '/').replace(/^https:/, 'https:');
+
+  return '';
 }
 
-// 追蹤短連結 → 取得最終商品頁 HTML
+// 取得 HTML（支援跳轉 + 語系）
 async function fetchHTML(url){
   const res = await fetch(url, {
     redirect: 'follow',
-    headers: { 'user-agent': UA, 'accept': 'text/html,application/xhtml+xml' }
+    headers: {
+      'user-agent': UA,
+      'accept': 'text/html,application/xhtml+xml',
+      'accept-language': 'zh-TW,zh;q=0.9,en;q=0.8'
+    }
   });
   if (!res.ok) throw new Error('HTTP '+res.status);
   const html = await res.text();
   return { finalUrl: res.url || url, html };
 }
 
-// 綜合解析：優先 ld+json，其次 OG，最後兜底
+// 綜合解析：優先 ld+json → OG → 兜底
 async function extractFrom(target){
   const { finalUrl, html } = await fetchHTML(target);
   const b = parseBasic(html);
@@ -87,6 +97,7 @@ async function extractFrom(target){
   return { productUrl, title, image };
 }
 
+// CSV 讀取
 function readCSV(file){
   const raw = fs.readFileSync(file,'utf8');
   const lines = raw.split(/\r?\n/).filter(l=>l.trim()!=='');
@@ -114,6 +125,7 @@ function buildAff(url, given){
   return given || url;
 }
 
+// 主程式
 async function main(){
   const rows = readCSV(SRC);
   const prev = loadJSON(OUT, { items: [], lastUpdated: '' });
@@ -121,7 +133,7 @@ async function main(){
 
   const items = [];
   for (const row of rows){
-    const target = row.url || row.affiliate_url;   // ← 允許只填短連結
+    const target = row.url || row.affiliate_url;   // 支援只填 affiliate_url
     if (!target) continue;
 
     const id = uidFor(target);
@@ -155,7 +167,7 @@ async function main(){
   }
 
   fs.writeFileSync(OUT, JSON.stringify({ items, lastUpdated: new Date().toISOString() }, null, 2));
-  console.log('Updated', OUT);
+  console.log('Updated', OUT, 'items:', items.length);
 }
 
 main().catch(e=>{ console.error(e); process.exit(1); });
