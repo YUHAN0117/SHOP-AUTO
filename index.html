@@ -18,7 +18,7 @@
     .category { font-size:13px; color:#aaa; margin:5px 0; }
   </style>
 
-  <!-- Google Analytics 4 -->
+  <!-- GA4 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0XBJ4VCQSM"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -29,106 +29,45 @@
 </head>
 <body>
   <h1>🔥 精選導購商品 🔥</h1>
-  <div class="grid" id="productGrid"></div>
+  <div class="grid" id="productGrid">載入中...</div>
 
   <script>
-    // 直接內建商品資料 (未來可改成讀取 CSV)
-    const products = [
-      {
-        url: "https://s.shopee.tw/AKRG8ZP8vj",
-        title: "多功能滑雪訓練器",
-        price: "NT$630",
-        rating: "⭐ 4.6",
-        category: "健身器材｜居家健身",
-        image: "https://yuhan0117.github.io/SHOP-AUTO/assets/img/S__25632773_0.jpg"
-      },
-      {
-        url: "https://s.shopee.tw/8Uzbx8Y0sU",
-        title: "五合一行動電源 10000mAh",
-        price: "NT$599",
-        rating: "⭐ 4.7",
-        category: "行動電源｜快充",
-        image: "https://yuhan0117.github.io/SHOP-AUTO/assets/img/S__25632774_0.jpg"
-      },
-      {
-        url: "https://s.shopee.tw/2ViOoJflyR",
-        title: "折疊鞋盒",
-        price: "NT$584",
-        rating: "⭐ 4.7",
-        category: "收納｜鞋盒",
-        image: "https://yuhan0117.github.io/SHOP-AUTO/assets/img/S__25632786_0.jpg"
-      },
-      {
-        url: "https://s.shopee.tw/9zoPk2xjAS",
-        title: "汽車遮陽蓬",
-        price: "NT$406",
-        rating: "⭐ 4.5",
-        category: "汽車用品｜遮陽",
-        image: "https://yuhan0117.github.io/SHOP-AUTO/assets/img/S__25632787_0.jpg"
-      },
-      {
-        url: "https://s.shopee.tw/113pmORd4",
-        title: "防臭地漏",
-        price: "NT$189",
-        rating: "⭐ 4.6",
-        category: "居家五金｜地漏",
-        image: "https://yuhan0117.github.io/SHOP-AUTO/assets/img/S__25632788_0.jpg"
-      },
-      {
-        url: "https://s.shopee.tw/8KgBl4RYbz",
-        title: "智能霧化薰香機",
-        price: "NT$99",
-        rating: "⭐ 4.7",
-        category: "家電｜香氛",
-        image: "https://yuhan0117.github.io/SHOP-AUTO/assets/img/S__25632789_0.jpg"
-      },
-      {
-        url: "https://s.shopee.tw/6VEXZe6KES",
-        title: "車載磁吸支架",
-        price: "NT$134",
-        rating: "⭐ 4.6",
-        category: "汽車用品｜支架",
-        image: "https://yuhan0117.github.io/SHOP-AUTO/assets/img/S__25632790_0.jpg"
-      },
-      {
-        url: "https://s.shopee.tw/7AUEMnQm5J",
-        title: "兩件式反光雨衣",
-        price: "NT$599",
-        rating: "⭐ 4.7",
-        category: "戶外用品｜雨衣",
-        image: "https://yuhan0117.github.io/SHOP-AUTO/assets/img/S__25632792_0.jpg"
-      },
-      {
-        url: "https://s.shopee.tw/8KgBkxR9bI",
-        title: "後備箱收納神器",
-        price: "NT$323",
-        rating: "⭐ 4.8",
-        category: "汽車用品｜收納",
-        image: "https://yuhan0117.github.io/SHOP-AUTO/assets/img/S__25632791_0.jpg"
-      },
-      {
-        url: "https://s.shopee.tw/9AFIkRuCJD",
-        title: "家用除蟎機",
-        price: "NT$97",
-        rating: "⭐ 4.5",
-        category: "家電｜除蟎",
-        image: "https://yuhan0117.github.io/SHOP-AUTO/assets/img/S__25632793_0.jpg"
-      }
-    ];
+    // CSV 轉換函式
+    function parseCSV(text) {
+      const lines = text.trim().split("\n");
+      const headers = lines[0].split(",");
+      return lines.slice(1).map(line => {
+        const values = line.split(",");
+        let obj = {};
+        headers.forEach((h, i) => obj[h.trim()] = values[i] ? values[i].trim() : "");
+        return obj;
+      });
+    }
 
-    const grid = document.getElementById("productGrid");
-    products.forEach(p => {
-      grid.innerHTML += `
-        <div class="card">
-          <img src="${p.image}" alt="${p.title}">
-          <h3>${p.title}</h3>
-          <p class="price">${p.price}</p>
-          <p class="rating">${p.rating}</p>
-          <p class="category">分類：${p.category}</p>
-          <a class="btn" href="${p.url}" target="_blank">前往購買</a>
-        </div>
-      `;
-    });
+    // 讀取 CSV 並生成卡片
+    fetch("assets/data/products.csv")
+      .then(res => res.text())
+      .then(text => {
+        const products = parseCSV(text);
+        const grid = document.getElementById("productGrid");
+        grid.innerHTML = "";
+        products.forEach(p => {
+          if (p.active !== "true") return; // 只顯示 active=true 的商品
+          grid.innerHTML += `
+            <div class="card">
+              <img src="${p.image}" alt="${p.title}">
+              <h3>${p.title}</h3>
+              <p class="price">NT$${p.price}</p>
+              <p class="rating">⭐ ${p.rating}</p>
+              <p class="category">分類：${p.category}｜標籤：${p.tags}</p>
+              <a class="btn" href="${p.affiliate_url}" target="_blank">前往購買</a>
+            </div>
+          `;
+        });
+      })
+      .catch(err => {
+        document.getElementById("productGrid").innerHTML = "❌ 載入商品資料失敗：" + err;
+      });
   </script>
 </body>
 </html>
