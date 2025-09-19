@@ -3,123 +3,102 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>導購站</title>
+  <title>精選導購商品</title>
   <style>
-    body { font-family: Arial, sans-serif; background:#111; color:#fff; margin:0; padding:20px; }
-    h1 { text-align:center; margin-bottom:20px; }
-    .products { display:grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap:20px; }
-    .card { background:#222; padding:15px; border-radius:10px; text-align:center; }
-    .card img { width:100%; height:180px; object-fit:cover; border-radius:8px; }
-    .card h3 { font-size:16px; margin:10px 0 5px; }
-    .card p { font-size:14px; color:#0f0; }
-    .buy-btn { display:inline-block; margin-top:10px; padding:8px 14px; background:#06f; color:#fff;
-               border-radius:6px; text-decoration:none; font-size:14px; }
-    .buy-btn:hover { background:#08f; }
+    body { background:#111; color:#fff; font-family: Arial, sans-serif; text-align:center; }
+    h1 { margin:20px 0; }
+    .grid { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
+    .card { background:#222; border-radius:10px; padding:10px; width:200px; }
+    .card img { width:100%; height:200px; object-fit:cover; border-radius:8px; }
+    .card h3 { font-size:16px; margin:10px 0; }
+    .price { color:#0f0; font-weight:bold; margin:5px 0; }
+    .btn { display:inline-block; background:#007bff; color:#fff; padding:8px 12px; border-radius:6px; text-decoration:none; }
+    .btn:hover { background:#0056b3; }
   </style>
+</head>
+<body>
+  <h1>🔥 精選導購商品 🔥</h1>
+  <div class="grid">
+    
+    <div class="card">
+      <img src="https://yuhan0117.github.io/SHOP-AUTO/assets/img/S_25632773_0.jpg" alt="車載磁吸支架">
+      <h3>車載磁吸支架</h3>
+      <p class="price">NT$134</p>
+      <a class="btn" href="https://s.shopee.tw/8Uzbx8Y0sU" target="_blank">前往購買</a>
+    </div>
 
-  <!-- Google Analytics 4 -->
+    <div class="card">
+      <img src="https://yuhan0117.github.io/SHOP-AUTO/assets/img/S_25632774_0.jpg" alt="防臭地漏">
+      <h3>防臭地漏</h3>
+      <p class="price">NT$189</p>
+      <a class="btn" href="https://s.shopee.tw/AKRG8ZP8vj" target="_blank">前往購買</a>
+    </div>
+
+    <div class="card">
+      <img src="https://yuhan0117.github.io/SHOP-AUTO/assets/img/S_25632786_0.jpg" alt="多功能滑雪訓練器">
+      <h3>多功能滑雪訓練器</h3>
+      <p class="price">NT$630</p>
+      <a class="btn" href="https://s.shopee.tw/9AFIkRuCJD" target="_blank">前往購買</a>
+    </div>
+
+    <div class="card">
+      <img src="https://yuhan0117.github.io/SHOP-AUTO/assets/img/S_25632787_0.jpg" alt="家用除蟎機">
+      <h3>家用除蟎機</h3>
+      <p class="price">NT$97</p>
+      <a class="btn" href="https://s.shopee.tw/7AUEMnQm5J" target="_blank">前往購買</a>
+    </div>
+
+    <div class="card">
+      <img src="https://yuhan0117.github.io/SHOP-AUTO/assets/img/S_25632788_0.jpg" alt="汽車遮陽簾">
+      <h3>汽車遮陽簾</h3>
+      <p class="price">NT$406</p>
+      <a class="btn" href="https://s.shopee.tw/8KgBkxR9bI" target="_blank">前往購買</a>
+    </div>
+
+    <div class="card">
+      <img src="https://yuhan0117.github.io/SHOP-AUTO/assets/img/S_25632789_0.jpg" alt="智能霧化薰香機">
+      <h3>智能霧化薰香機</h3>
+      <p class="price">NT$99</p>
+      <a class="btn" href="https://s.shopee.tw/9zoPk2xjAS" target="_blank">前往購買</a>
+    </div>
+
+    <div class="card">
+      <img src="https://yuhan0117.github.io/SHOP-AUTO/assets/img/S_25632790_0.jpg" alt="折疊鞋盒">
+      <h3>折疊鞋盒</h3>
+      <p class="price">NT$584</p>
+      <a class="btn" href="https://s.shopee.tw/6VEXZe6KES" target="_blank">前往購買</a>
+    </div>
+
+    <div class="card">
+      <img src="https://yuhan0117.github.io/SHOP-AUTO/assets/img/S_25632791_0.jpg" alt="兩件式反光雨衣">
+      <h3>兩件式反光雨衣</h3>
+      <p class="price">NT$599</p>
+      <a class="btn" href="https://s.shopee.tw/2ViOoJflyR" target="_blank">前往購買</a>
+    </div>
+
+    <div class="card">
+      <img src="https://yuhan0117.github.io/SHOP-AUTO/assets/img/S_25632792_0.jpg" alt="後備箱收納神器">
+      <h3>後備箱收納神器</h3>
+      <p class="price">NT$323</p>
+      <a class="btn" href="https://s.shopee.tw/8KgBl4RYbz" target="_blank">前往購買</a>
+    </div>
+
+    <div class="card">
+      <img src="https://yuhan0117.github.io/SHOP-AUTO/assets/img/S_25632793_0.jpg" alt="五合一行動電源">
+      <h3>五合一行動電源 10000mAh</h3>
+      <p class="price">NT$599</p>
+      <a class="btn" href="https://s.shopee.tw/113pmORd4" target="_blank">前往購買</a>
+    </div>
+
+  </div>
+
+  <!-- GA 追蹤碼 -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-0XBJ4VCQSM"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-0XBJ4VCQSM', { 'link_attribution': true });
+    gtag('config', 'G-0XBJ4VCQSM');
   </script>
-
-  <!-- 追蹤前往購買點擊 -->
-  <script>
-    document.addEventListener('click', function (ev) {
-      const a = ev.target.closest('a');
-      if (!a || !a.classList.contains('buy-btn')) return;
-
-      const title = a.dataset.title || a.textContent.trim();
-      const href = a.href;
-
-      ev.preventDefault();
-      let navigated = false;
-      function go() {
-        if (!navigated) {
-          navigated = true;
-          window.open(href, "_blank", "noopener");
-        }
-      }
-
-      try {
-        gtag('event', 'affiliate_click', {
-          event_category: 'affiliate',
-          event_label: href,
-          item_name: title,
-          event_callback: go,
-          transport_type: 'beacon'
-        });
-        setTimeout(go, 600);
-      } catch (e) { go(); }
-    }, { capture:true });
-  </script>
-</head>
-<body>
-  <h1>🔥 精選導購商品 🔥</h1>
-  <div class="products">
-    <div class="card">
-      <img src="https://yuhan0117.github.io/SHOP-AUTO/assets/img/S_25632773_0.jpg" alt="車載磁吸支架">
-      <h3>車載磁吸支架</h3>
-      <p>NT$134</p>
-      <a class="buy-btn" data-title="車載磁吸支架" href="https://s.shopee.tw/8Uzbx8Y0sU" target="_blank" rel="nofollow">前往購買</a>
-    </div>
-    <div class="card">
-      <img src="https://yuhan0117.github.io/SHOP-AUTO/assets/img/S_25632774_0.jpg" alt="防臭地漏">
-      <h3>防臭地漏</h3>
-      <p>NT$189</p>
-      <a class="buy-btn" data-title="防臭地漏" href="https://s.shopee.tw/AKRG8ZP8vj" target="_blank" rel="nofollow">前往購買</a>
-    </div>
-    <div class="card">
-      <img src="https://yuhan0117.github.io/SHOP-AUTO/assets/img/S_25632786_0.jpg" alt="多功能滑雪訓練器">
-      <h3>多功能滑雪訓練器</h3>
-      <p>NT$630</p>
-      <a class="buy-btn" data-title="多功能滑雪訓練器" href="https://s.shopee.tw/9AFIkRuCJD" target="_blank" rel="nofollow">前往購買</a>
-    </div>
-    <div class="card">
-      <img src="https://yuhan0117.github.io/SHOP-AUTO/assets/img/S_25632787_0.jpg" alt="家用除蟎機">
-      <h3>家用除蟎機</h3>
-      <p>NT$97</p>
-      <a class="buy-btn" data-title="家用除蟎機" href="https://s.shopee.tw/7AUEMnQm5J" target="_blank" rel="nofollow">前往購買</a>
-    </div>
-    <div class="card">
-      <img src="https://yuhan0117.github.io/SHOP-AUTO/assets/img/S_25632788_0.jpg" alt="汽車遮陽簾">
-      <h3>汽車遮陽簾</h3>
-      <p>NT$406</p>
-      <a class="buy-btn" data-title="汽車遮陽簾" href="https://s.shopee.tw/8KgBkxR9bI" target="_blank" rel="nofollow">前往購買</a>
-    </div>
-    <div class="card">
-      <img src="https://yuhan0117.github.io/SHOP-AUTO/assets/img/S_25632789_0.jpg" alt="智能霧化薰香機">
-      <h3>智能霧化薰香機</h3>
-      <p>NT$99</p>
-      <a class="buy-btn" data-title="智能霧化薰香機" href="https://s.shopee.tw/9zoPk2xjAS" target="_blank" rel="nofollow">前往購買</a>
-    </div>
-    <div class="card">
-      <img src="https://yuhan0117.github.io/SHOP-AUTO/assets/img/S_25632790_0.jpg" alt="折疊鞋盒">
-      <h3>折疊鞋盒</h3>
-      <p>NT$584</p>
-      <a class="buy-btn" data-title="折疊鞋盒" href="https://s.shopee.tw/6VEXZe6KES" target="_blank" rel="nofollow">前往購買</a>
-    </div>
-    <div class="card">
-      <img src="https://yuhan0117.github.io/SHOP-AUTO/assets/img/S_25632791_0.jpg" alt="兩件式反光雨衣">
-      <h3>兩件式反光雨衣</h3>
-      <p>NT$599</p>
-      <a class="buy-btn" data-title="兩件式反光雨衣" href="https://s.shopee.tw/2ViOoJflyR" target="_blank" rel="nofollow">前往購買</a>
-    </div>
-    <div class="card">
-      <img src="https://yuhan0117.github.io/SHOP-AUTO/assets/img/S_25632792_0.jpg" alt="後備箱收納神器">
-      <h3>後備箱收納神器</h3>
-      <p>NT$323</p>
-      <a class="buy-btn" data-title="後備箱收納神器" href="https://s.shopee.tw/8KgBl4RYbz" target="_blank" rel="nofollow">前往購買</a>
-    </div>
-    <div class="card">
-      <img src="https://yuhan0117.github.io/SHOP-AUTO/assets/img/S_25632793_0.jpg" alt="五合一行動電源10000mAh">
-      <h3>五合一行動電源10000mAh</h3>
-      <p>NT$599</p>
-      <a class="buy-btn" data-title="五合一行動電源10000mAh" href="https://s.shopee.tw/113pmORd4" target="_blank" rel="nofollow">前往購買</a>
-    </div>
-  </div>
 </body>
 </html>
