@@ -9,7 +9,7 @@
     h1 { margin:20px 0; }
     .grid { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
     .card { background:#222; border-radius:10px; padding:10px; width:200px; }
-    .card img { width:100%; height:200px; object-fit:cover; border-radius:8px; background:#333; }
+    .card img { width:100%; height:200px; object-fit:cover; border-radius:8px; }
     .card h3 { font-size:16px; margin:10px 0; }
     .price { color:#0f0; font-weight:bold; margin:5px 0; }
     .btn { display:inline-block; background:#007bff; color:#fff; padding:8px 12px; border-radius:5px; text-decoration:none; }
@@ -53,38 +53,16 @@
         grid.innerHTML = "";
         products.forEach(p => {
           if (p.active !== "true") return; // 只顯示 active=true 的商品
-          const card = document.createElement("div");
-          card.className = "card";
-          card.innerHTML = `
-            <img src="${p.image}" alt="${p.title}">
-            <h3>${p.title}</h3>
-            <p class="price">NT$${p.price}</p>
-            <p class="rating">⭐ ${p.rating}</p>
-            <p class="category">分類：${p.category}｜標籤：${p.tags}</p>
-            <a class="btn" href="${p.affiliate_url}" target="_blank" data-title="${p.title}">前往購買</a>
+          grid.innerHTML += `
+            <div class="card">
+              <img src="${p.image}" alt="${p.title}">
+              <h3>${p.title}</h3>
+              <p class="price">NT$${p.price}</p>
+              <p class="rating">⭐ ${p.rating}</p>
+              <p class="category">分類：${p.category}｜標籤：${p.tags}</p>
+              <a class="btn" href="${p.affiliate_url}" target="_blank">前往購買</a>
+            </div>
           `;
-          grid.appendChild(card);
-        });
-
-        // 綁定 GA4 點擊事件
-        document.querySelectorAll(".btn").forEach(btn => {
-          btn.addEventListener("click", function(e) {
-            e.preventDefault();
-            const url = this.href;
-            const title = this.dataset.title;
-            let navigated = false;
-            function go(){ if(!navigated){ navigated=true; window.open(url,"_blank","noopener"); } }
-            try {
-              gtag('event','affiliate_click',{
-                event_category: 'affiliate',
-                event_label: url,
-                item_name: title,
-                event_callback: go,
-                transport_type: 'beacon'
-              });
-              setTimeout(go,600); // 保險：0.6 秒後強制開啟
-            } catch(err){ go(); }
-          });
         });
       })
       .catch(err => {
