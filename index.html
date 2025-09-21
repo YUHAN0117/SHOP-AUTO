@@ -1,73 +1,115 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>精選導購商品</title>
   <style>
-    body { font-family: Arial, sans-serif; background:#111; color:#fff; text-align:center; }
-    h1 { margin:20px 0; }
-    .grid { display:flex; flex-wrap:wrap; justify-content:center; gap:20px; }
-    .card { background:#222; border-radius:10px; padding:10px; width:200px; }
-    .card img { width:100%; height:200px; object-fit:cover; border-radius:8px; }
-    .card h3 { font-size:16px; margin:10px 0; }
-    .price { color:#0f0; font-weight:bold; margin:5px 0; }
-    .btn { display:inline-block; background:#007bff; color:#fff; padding:8px 12px; border-radius:5px; text-decoration:none; }
-    .btn:hover { background:#0056b3; }
-    .rating { color:#ffcc00; font-size:14px; margin:5px 0; }
-    .category { font-size:13px; color:#aaa; margin:5px 0; }
+    body { margin:0; font-family: system-ui, -apple-system, "Noto Sans TC", Arial, sans-serif; background:#0f1620; color:#e9eef5; }
+    .wrap { max-width:1100px; margin:0 auto; padding:22px 16px 40px; }
+    h1 { margin:10px 0 18px; text-align:center; font-size:28px; }
+    .grid { display:grid; grid-template-columns: repeat( auto-fill, minmax(220px,1fr) ); gap:16px; }
+    .card { background:#1a2230; border-radius:12px; padding:12px; box-shadow:0 4px 14px rgba(0,0,0,.25); }
+    .card img { width:100%; height:180px; object-fit:cover; border-radius:8px; background:#0b111a; }
+    .card h3 { font-size:16px; margin:10px 0 6px; line-height:1.35; color:#fff; }
+    .price { color:#00e676; font-weight:700; margin:4px 0 10px; }
+    .btn { display:inline-block; background:#0b84ff; color:#fff; padding:8px 12px; border-radius:8px; text-decoration:none; font-weight:600; }
+    .btn:hover { background:#056bd2; }
+    footer { margin-top:28px; text-align:center; color:#9fb1c5; font-size:13px; }
+    .qrcode img { width:160px; height:160px; border:6px solid #fff; border-radius:10px; box-shadow:0 0 12px rgba(0,0,0,.45); }
   </style>
-
-  <!-- GA4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0XBJ4VCQSM"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-0XBJ4VCQSM');
-  </script>
 </head>
 <body>
-  <h1>🔥 精選導購商品 🔥</h1>
-  <div class="grid" id="productGrid">載入中...</div>
+  <div class="wrap">
+
+    <!-- 商品區（置頂顯示） -->
+    <h1>🔥 精選導購商品 🔥</h1>
+    <div class="grid">
+
+      <div class="card">
+        <img src="assets/img/S__25632790_0.jpg" alt="車載磁吸支架" loading="lazy">
+        <h3>車載磁吸支架</h3>
+        <p class="price">NT$134</p>
+        <a class="btn" href="https://s.shopee.tw/6VEXZe6KES" target="_blank">前往購買</a>
+      </div>
+
+      <div class="card">
+        <img src="assets/img/S__25632788_0.jpg" alt="防臭地漏" loading="lazy">
+        <h3>防臭地漏</h3>
+        <p class="price">NT$189</p>
+        <a class="btn" href="https://s.shopee.tw/113pmORd4" target="_blank">前往購買</a>
+      </div>
+
+      <div class="card">
+        <img src="assets/img/S__25632773_0.jpg" alt="多功能滑雪訓練器" loading="lazy">
+        <h3>多功能滑雪訓練器</h3>
+        <p class="price">NT$630</p>
+        <a class="btn" href="https://s.shopee.tw/AKRG8ZP8vj" target="_blank">前往購買</a>
+      </div>
+
+      <div class="card">
+        <img src="assets/img/S__25632787_0.jpg" alt="家用除蟎機" loading="lazy">
+        <h3>家用除蟎機</h3>
+        <p class="price">NT$97</p>
+        <a class="btn" href="https://s.shopee.tw/9AFIkRuCJD" target="_blank">前往購買</a>
+      </div>
+
+      <div class="card">
+        <img src="assets/img/S__25632791_0.jpg" alt="汽車遮陽蓬" loading="lazy">
+        <h3>汽車遮陽蓬</h3>
+        <p class="price">NT$406</p>
+        <a class="btn" href="https://s.shopee.tw/9zoPk2xjAS" target="_blank">前往購買</a>
+      </div>
+
+      <div class="card">
+        <img src="assets/img/S__25632789_0.jpg" alt="智能霧化薰香機" loading="lazy">
+        <h3>智能霧化薰香機</h3>
+        <p class="price">NT$99</p>
+        <a class="btn" href="https://s.shopee.tw/8KgBl4RYbz" target="_blank">前往購買</a>
+      </div>
+
+      <div class="card">
+        <img src="assets/img/S__25632786_0.jpg" alt="折疊鞋盒" loading="lazy">
+        <h3>折疊鞋盒</h3>
+        <p class="price">NT$584</p>
+        <a class="btn" href="https://s.shopee.tw/2ViOoJflyR" target="_blank">前往購買</a>
+      </div>
+
+      <div class="card">
+        <img src="assets/img/S__25632792_0.jpg" alt="兩件式反光雨衣" loading="lazy">
+        <h3>兩件式反光雨衣</h3>
+        <p class="price">NT$599</p>
+        <a class="btn" href="https://s.shopee.tw/7AUEMnQm5J" target="_blank">前往購買</a>
+      </div>
+
+      <div class="card">
+        <img src="assets/img/S__25632774_0.jpg" alt="五合一行動電源 10000mAh" loading="lazy">
+        <h3>五合一行動電源 10000mAh</h3>
+        <p class="price">NT$599</p>
+        <a class="btn" href="https://s.shopee.tw/8Uzbx8Y0sU" target="_blank">前往購買</a>
+      </div>
+
+      <div class="card">
+        <img src="assets/img/S__25632791_0.jpg" alt="後備箱收納神器" loading="lazy">
+        <h3>後備箱收納神器</h3>
+        <p class="price">NT$323</p>
+        <a class="btn" href="https://s.shopee.tw/8KgBkxR9bI" target="_blank">前往購買</a>
+      </div>
+
+    </div>
+
+    <!-- QR Section（想顯示就留，想拿掉就整段刪掉） -->
+    <section class="qrcode" style="text-align:center; margin:32px 0 8px;">
+      <h3>📱 也可掃描 QR Code 進站</h3>
+      <img src="assets/img/qrcode.png?v=1" alt="導購站 QR Code" loading="lazy">
+    </section>
+
+    <footer>最後更新：<span id="ts"></span></footer>
+  </div>
 
   <script>
-    // CSV 轉換函式
-    function parseCSV(text) {
-      const lines = text.trim().split("\n");
-      const headers = lines[0].split(",");
-      return lines.slice(1).map(line => {
-        const values = line.split(",");
-        let obj = {};
-        headers.forEach((h, i) => obj[h.trim()] = values[i] ? values[i].trim() : "");
-        return obj;
-      });
-    }
-
-    // 讀取 CSV 並生成卡片
-    fetch("assets/data/products.csv")
-      .then(res => res.text())
-      .then(text => {
-        const products = parseCSV(text);
-        const grid = document.getElementById("productGrid");
-        grid.innerHTML = "";
-        products.forEach(p => {
-          if (p.active !== "true") return; // 只顯示 active=true 的商品
-          grid.innerHTML += `
-            <div class="card">
-              <img src="${p.image}" alt="${p.title}">
-              <h3>${p.title}</h3>
-              <p class="price">NT$${p.price}</p>
-              <p class="rating">⭐ ${p.rating}</p>
-              <p class="category">分類：${p.category}｜標籤：${p.tags}</p>
-              <a class="btn" href="${p.affiliate_url}" target="_blank">前往購買</a>
-            </div>
-          `;
-        });
-      })
-      .catch(err => {
-        document.getElementById("productGrid").innerHTML = "❌ 載入商品資料失敗：" + err;
-      });
+    // 顯示最後更新時間（避免快取）
+    document.getElementById('ts').textContent = new Date().toISOString().replace('T',' ').slice(0,19) + 'Z';
   </script>
 </body>
 </html>
