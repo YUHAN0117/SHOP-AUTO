@@ -107,8 +107,8 @@
     <footer>最後更新：<span id="ts"></span></footer>
   </div>
 
-  <script>
-// 更穩定的 CSV 解析（支援引號與逗號）
+<script>
+// 穩定 CSV 解析（支援含逗號/引號）
 function parseCSV(text) {
   const rows = [];
   let row = [], val = '', inQuotes = false;
@@ -116,22 +116,20 @@ function parseCSV(text) {
   for (let i = 0; i < text.length; i++) {
     const c = text[i], n = text[i+1];
     if (inQuotes) {
-      if (c === '"' && n === '"') { val += '"'; i++; }           // 轉義雙引號
+      if (c === '"' && n === '"') { val += '"'; i++; }      // 轉義雙引號 ""
       else if (c === '"') { inQuotes = false; }
       else { val += c; }
     } else {
-      if (c === '"') { inQuotes = true; }
+      if (c === '"') inQuotes = true;
       else if (c === ',') { row.push(val.trim()); val = ''; }
       else if (c === '\n' || c === '\r') {
         if (val !== '' || row.length) { row.push(val.trim()); rows.push(row); row = []; val = ''; }
-        // 跳過 \r\n 組合
-        if (c === '\r' && n === '\n') i++;
+        if (c === '\r' && n === '\n') i++;                  // 處理 \r\n
       } else { val += c; }
     }
   }
   if (val !== '' || row.length) { row.push(val.trim()); rows.push(row); }
 
-  // 第一列當表頭
   const headers = (rows.shift() || []).map(h => h.trim());
   return rows.map(r => {
     const obj = {};
@@ -140,16 +138,15 @@ function parseCSV(text) {
   });
 }
 
-// 顯示商品卡片
 function renderProducts(list) {
   const grid = document.getElementById('productGrid');
   grid.innerHTML = '';
   let shown = 0;
+
   list.forEach(p => {
-    // 只要 active 欄位非「明確 false」就顯示（更寬鬆），優先相容既有 true/TRUE/1
     const isActive = String(p.active || '').toLowerCase();
     if (isActive && isActive !== 'false' && isActive !== '0') {
-      const img = p.image || '';
+      const img = p.image || 'assets/img/no-image.png';
       grid.insertAdjacentHTML('beforeend', `
         <div class="card">
           <img src="${img}" alt="${p.title || ''}" onerror="this.src='assets/img/no-image.png'">
@@ -163,17 +160,13 @@ function renderProducts(list) {
       shown++;
     }
   });
+
   if (!shown) grid.innerHTML = '（沒有可顯示的商品）';
 }
 
-// 加上時間戳避免快取
-const csvUrl = 'assets/data/products.csv?t=' + Date.now();
-
-fetch(csvUrl, { cache: 'no-store' })
-  .then(r => {
-    if (!r.ok) throw new Error('HTTP ' + r.status);
-    return r.text();
-  })
+// 讀取 data/products.csv（加上時間戳避免快取）
+fetch('data/products.csv?t=' + Date.now(), { cache: 'no-store' })
+  .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
   .then(text => renderProducts(parseCSV(text)))
   .catch(err => {
     document.getElementById('productGrid').innerHTML =
